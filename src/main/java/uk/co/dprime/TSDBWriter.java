@@ -59,6 +59,11 @@ public class TSDBWriter {
                 try {
                     channel.get().write(line);
                 } catch (IOException e) {
+                    try {
+                        channel.get().connect();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
                     e.printStackTrace();
                 }
             }
